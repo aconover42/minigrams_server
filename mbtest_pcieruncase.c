@@ -749,65 +749,29 @@ static void MenuMBtest(WDC_DEVICE_HANDLE hDev, WDC_DEVICE_HANDLE hDev2)
 
     //added vars for case 27, can be condensed down
 
-static int adcdata;
-static int a_id ;
-static UINT32 *buffp_rec32;
-UINT32 buf_send[40000];
-unsigned char carray[4000];
-static UINT32 ch;
-unsigned char charchannel;
-static int count ;
-static int counta;
-static UINT32 dmasizewrite;
-static int dummy1;
-static DWORD dwAddrSpace;
-DWORD dwDMABufSize;
-static DWORD dwOffset;
-DWORD dwOptions_rec;
-DWORD dwStatus;
-static UINT32 evno;
-static UINT32 evenob4;
-static int fakeadcdata;
-static int fd;
-static int femfakedata;
-static UINT32 ffrno[20], ffrnob4[20], frno, frnob4, firstokay;
-static UINT32 i, j, k, ifr, ik, il, is;
-static int ibase;
-UINT32 icheck;
-ichip; //never initialized
-static int ichip_c, idebug, idone;
-static UINT32 icompare;
-static int iframe, iframe_length;
-static int ihuff;
-static int ij;
-static UINT32 ijk, ic, iv;
-static long imod;
-static int imod_fem, imod_st;
-static UINT32 imod_trig;
-static int imod_xmit;
-FILE *inpf; //pointer, doesn't need to be declared?
-static UINT32 ipause, iprint, irand;
-static int irawprint, iset;
-static UINT32 islow_read;
-static int itrig_c, itrig_delay;
-static UINT32 iwrite, iwrited, iwritem;
-static int last_dma_loop_size;
-static int ncount, ndma_loop;
-static UNIT32 nevent;
+#define  mb_feb_rd_status      20
+#define  mb_feb_dram_reset     31
+#define  mb_feb_pll_reset       5
+#define  mb_xmit_link_pll_reset    26
 static long nmod;
-static int notadcdata, nred, nsend, ntot_rec, nword, nwrite, nwrite_byte;
-FILE *outf; //pointer
+static int imod_st;
+static int fakeadcdata, femfakedata;
+static UINT32 iwritem;
+static UINT32 dmasizewrite;
+static int fd;
+static UINT32 iwrited;
+static uint32 icompare, ipause;
+static int imod_fem;
+static int last_dma_loop_size;
 PVOID pbuf_rec1;
+PVOID pbuf_rec2;
 WD_DMA *pDma_rec1; //pointer
 WD_DMA *pDma_rec2; //pointer
-UNIT32 *px; //pointer 
-UNIT32 *py; //pointer 
-static UINT32 read_array[40000000], read_array_1st[40000000], read_array_compare[40000000];
-struct timespec tim, tim2; //idk about this one
-static int timesize;
-static UINT32 u32Data;
-static unsigned long long u64Data;
-
+static int nwrite_byte, nwrite;
+static UINT32 read_array_list[40000000], read_array_compare[40000000];
+static UINT32 firstokay;
+static UINT32 evno,evnob4,frno,frnob4,ch,fevno[20],fevnob4[20],ffrno[20],ffrnob4[20];
+static int notadcdata;
 
 //variables for data checking
     int nc=0;
@@ -818,6 +782,8 @@ static unsigned long long u64Data;
     long long int adc1,adc2;
     static long tnum;
     char name[150];
+
+
 
 //*********************************************
 
